@@ -19,3 +19,6 @@ Currently the build process has only been tested on Windows, with Linux support 
 6. Run your generator (e.g. `ninja`) and build the project
 
 If you run into any problems building OptiCraft, submit an issue in the issue tracker.
+
+## Credits
+Icon by AQUARINTHOS
