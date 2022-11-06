@@ -1,16 +1,17 @@
-#include <SDL.h>
+#include "Application.hpp"
 
-int main(int argc, char* argv[])
-{
-    SDL_Init(SDL_INIT_EVERYTHING);
-    SDL_Window* window = SDL_CreateWindow("OptiCraft", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    SDL_RenderClear(renderer);
-    SDL_RenderPresent(renderer);
-    SDL_Delay(5000);
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-    SDL_Quit();
-    return 0;
+#include <iostream>
+#include <stdexcept>
+
+int main(int argc, char *argv[]) {
+  OptiCraft::App::init();
+  try {
+    OptiCraft::App::run();
+  } catch (const std::exception &e) {
+    std::cerr << e.what() << std::endl;
+    return EXIT_FAILURE;
+  }
+  OptiCraft::App::quit();
+
+  return EXIT_SUCCESS;
 }

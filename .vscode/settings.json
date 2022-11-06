@@ -1,5 +1,8 @@
 {
     "cmake.configureArgs": [
         "-Wno-dev"
-    ]
+    ],
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true
 }
