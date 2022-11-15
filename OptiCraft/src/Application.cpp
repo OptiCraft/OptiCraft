@@ -1,12 +1,16 @@
 #include "Application.hpp"
 
+#include <stdexcept>
+
 namespace OptiCraft {
 namespace App {
 
 static Window *s_Window;
 
 void init() {
-  SDL_Init(SDL_INIT_EVERYTHING);
+  if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
+    throw std::runtime_error("Failed to initialize SDL");
+  }
   s_Window = new Window(WindowProps());
 }
 
