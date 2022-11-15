@@ -10,7 +10,7 @@ struct WindowProps {
   uint16_t width;
   uint16_t height;
 
-  WindowProps(const std::string title = "OptiCraft", uint16_t width = 800,
+  WindowProps(std::string title = "OptiCraft", uint16_t width = 800,
               uint16_t height = 600)
       : title(std::move(title)), width(width), height(height) {}
 };

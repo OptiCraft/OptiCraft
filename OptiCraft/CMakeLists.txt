@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.24.2)
+cmake_minimum_required(VERSION 3.23)
 
 project(OptiCraft)
 
@@ -21,9 +21,11 @@ include_directories(${SDL2_INCLUDE_DIRS} ${Vulkan_INCLUDE_DIRS})
 add_executable(OptiCraft ${SOURCE_FILES})
 target_link_libraries(OptiCraft ${SDL2_LIBRARIES} ${Vulkan_LIBRARIES})
 
-add_custom_command(TARGET OptiCraft POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E echo "Copying SDL2.dll from ${SDL2_DLL} to build directory"
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-    "${SDL2_DLL}"
-    "${CMAKE_CURRENT_BINARY_DIR}"
-)
+if(WIN32)
+    add_custom_command(TARGET OptiCraft POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E echo "Copying SDL2.dll from ${SDL2_DLL} to build directory"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${SDL2_DLL}"
+        "${CMAKE_CURRENT_BINARY_DIR}"
+    )
+endif()

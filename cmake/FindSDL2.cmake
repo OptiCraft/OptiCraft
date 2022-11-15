@@ -1,7 +1,7 @@
 # Distributed under the OSI-approved BSD 3-Clause License. See accompanying
 # file Copyright.txt or https://cmake.org/licensing for details.
 
-#.rst:
+# .rst:
 # FindSDL2
 # -------
 #
@@ -77,11 +77,12 @@ endif()
 
 find_path(SDL2_INCLUDE_DIR SDL.h
   HINTS
-    ENV SDL2DIR
-    ${SDL2_DIR}
+  ENV SDL2DIR
+  ${SDL2_DIR}
   PATH_SUFFIXES SDL2
-                # path suffixes to search inside ENV{SDL2DIR}
-                include/SDL2 include
+
+  # path suffixes to search inside ENV{SDL2DIR}
+  include/SDL2 include
 )
 
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
@@ -90,23 +91,29 @@ else()
   set(VC_LIB_PATH_SUFFIX lib/x86)
 endif()
 
-if (WIN32)
+if(WIN32)
   # Find the SDL2.dll library
   find_file(SDL2_DLL SDL2.dll
     HINTS
-      ENV SDL2DIR
-      ${SDL2_DIR}
+    ENV SDL2DIR
+    ${SDL2_DIR}
     PATH_SUFFIXES SDL2
-                  # path suffixes to search inside ENV{SDL2DIR}
-                  ${VC_LIB_PATH_SUFFIX}
+
+    # path suffixes to search inside ENV{SDL2DIR}
+    ${VC_LIB_PATH_SUFFIX}
   )
+
+  # Check if SDL2_DLL is empty
+  if(NOT SDL2_DLL)
+    message(FATAL_ERROR "SDL2.dll not found!")
+  endif()
 endif()
 
 find_library(SDL2_LIBRARY_TEMP
   NAMES SDL2
   HINTS
-    ENV SDL2DIR
-    ${SDL2_DIR}
+  ENV SDL2DIR
+  ${SDL2_DIR}
   PATH_SUFFIXES lib ${VC_LIB_PATH_SUFFIX}
 )
 
@@ -124,8 +131,8 @@ if(NOT SDL2_BUILDING_LIBRARY)
     find_library(SDL2MAIN_LIBRARY
       NAMES SDL2main
       HINTS
-        ENV SDL2DIR
-        ${SDL2_DIR}
+      ENV SDL2DIR
+      ${SDL2_DIR}
       PATH_SUFFIXES lib ${VC_LIB_PATH_SUFFIX}
       PATHS
       /sw
@@ -154,9 +161,11 @@ if(SDL2_LIBRARY_TEMP)
   # For SDLmain
   if(SDL2MAIN_LIBRARY AND NOT SDL2_BUILDING_LIBRARY)
     list(FIND SDL2_LIBRARY_TEMP "${SDLMAIN_LIBRARY}" _SDL2_MAIN_INDEX)
+
     if(_SDL2_MAIN_INDEX EQUAL -1)
       set(SDL2_LIBRARY_TEMP "${SDLMAIN_LIBRARY}" ${SDL2_LIBRARY_TEMP})
     endif()
+
     unset(_SDL2_MAIN_INDEX)
   endif()
 
@@ -208,5 +217,5 @@ set(SDL2_INCLUDE_DIRS ${SDL2_INCLUDE_DIR})
 include(FindPackageHandleStandardArgs)
 
 FIND_PACKAGE_HANDLE_STANDARD_ARGS(SDL
-                                  REQUIRED_VARS SDL2_LIBRARY SDL2_INCLUDE_DIR
-                                  VERSION_VAR SDL2_VERSION_STRING)
+  REQUIRED_VARS SDL2_LIBRARY SDL2_INCLUDE_DIR
+  VERSION_VAR SDL2_VERSION_STRING)
