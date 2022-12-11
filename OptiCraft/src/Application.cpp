@@ -1,4 +1,5 @@
 #include "Application.hpp"
+#include "ErrorHandling.hpp"
 
 #include <stdexcept>
 
@@ -8,9 +9,7 @@ namespace App {
 static Window *s_Window;
 
 void init() {
-  if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
-    throw std::runtime_error("Failed to initialize SDL");
-  }
+  SDL_Call(SDL_Init(SDL_INIT_EVERYTHING));
   s_Window = new Window(WindowProps());
 }
 

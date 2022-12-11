@@ -4,8 +4,8 @@
 #include <stdexcept>
 
 int main(int argc, char *argv[]) {
-  OptiCraft::App::init();
   try {
+    OptiCraft::App::init();
     OptiCraft::App::run();
   } catch (const std::exception &e) {
     std::cerr << e.what() << std::endl;
