@@ -1,9 +1,5 @@
 #pragma once
 
-#include <SDL.h>
-
-#include <string>
-
 namespace OptiCraft {
 struct WindowProps {
   std::string title;

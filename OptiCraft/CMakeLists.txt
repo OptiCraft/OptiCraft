@@ -3,11 +3,12 @@ cmake_minimum_required(VERSION 3.23)
 project(OptiCraft)
 
 set(SOURCE_FILES
-    "src/main.cpp"
-    "src/Window.hpp"
-    "src/Application.hpp"
-    "src/Application.cpp"
-    "src/Window.cpp"
+    "src/OptiCraft/main.cpp"
+    "src/OptiCraft/Window.hpp"
+    "src/OptiCraft/Application.hpp"
+    "src/OptiCraft/Application.cpp"
+    "src/OptiCraft/Window.cpp"
+    "src/pch.hpp"
 )
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
@@ -20,6 +21,8 @@ include_directories(${SDL2_INCLUDE_DIRS} ${Vulkan_INCLUDE_DIRS})
 
 add_executable(OptiCraft ${SOURCE_FILES})
 target_link_libraries(OptiCraft ${SDL2_LIBRARIES} ${Vulkan_LIBRARIES})
+
+target_precompile_headers(OptiCraft PRIVATE "src/pch.hpp")
 
 if(WIN32)
     add_custom_command(TARGET OptiCraft POST_BUILD

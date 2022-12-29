@@ -2,8 +2,6 @@
 
 #include "Window.hpp"
 
-#include <memory>
-
 namespace OptiCraft {
 namespace App {
 void init();

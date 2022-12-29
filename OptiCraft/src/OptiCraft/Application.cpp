@@ -1,8 +1,6 @@
 #include "Application.hpp"
 #include "ErrorHandling.hpp"
 
-#include <stdexcept>
-
 namespace OptiCraft {
 namespace App {
 
