@@ -6,8 +6,7 @@ Window::Window(const WindowProps &props) : m_Props(props) {
   m_Window = SDL_CreateWindow(m_Props.title.c_str(), SDL_WINDOWPOS_CENTERED,
                               SDL_WINDOWPOS_CENTERED, m_Props.width,
                               m_Props.height, SDL_WINDOW_VULKAN);
-  if (!m_Window)
-    throw std::exception(SDL_GetError());
+  if (!m_Window) OC_THROW(SDL_GetError());
 }
 
 Window::~Window() {

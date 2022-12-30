@@ -5,8 +5,8 @@ int main(int argc, char *argv[]) {
     OptiCraft::App::init();
     OptiCraft::App::run();
   } catch (const std::exception &e) {
-    std::cerr << e.what() << std::endl;
-    return EXIT_FAILURE;
+    SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Exception caught", e.what(),
+                             nullptr);
   }
   OptiCraft::App::quit();
 

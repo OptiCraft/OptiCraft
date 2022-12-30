@@ -9,7 +9,8 @@ set(SOURCE_FILES
     "src/OptiCraft/Application.cpp"
     "src/OptiCraft/Window.cpp"
     "src/pch.hpp"
-)
+    "src/OptiCraft/ErrorHandling.cpp"
+    "src/OptiCraft/Macros.hpp")
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
@@ -23,6 +24,8 @@ add_executable(OptiCraft ${SOURCE_FILES})
 target_link_libraries(OptiCraft ${SDL2_LIBRARIES} ${Vulkan_LIBRARIES})
 
 target_precompile_headers(OptiCraft PRIVATE "src/pch.hpp")
+
+target_compile_definitions(OptiCraft PRIVATE $<$<CONFIG:Debug>:OC_DEBUG>)
 
 if(WIN32)
     add_custom_command(TARGET OptiCraft POST_BUILD
