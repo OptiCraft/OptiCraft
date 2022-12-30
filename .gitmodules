@@ -1,0 +1,3 @@
+[submodule "AssetPackCompiler"]
+	path = AssetPackCompiler
+	url = https://github.com/OptiCraft/AssetPack-Compiler.git
