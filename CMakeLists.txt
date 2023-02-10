@@ -8,5 +8,5 @@ endif()
 
 set(CMAKE_CXX_STANDARD 20)
 
+add_subdirectory(AssetPackCompiler/CLI)
 add_subdirectory(OptiCraft)
-add_subdirectory(AssetPackCompiler)

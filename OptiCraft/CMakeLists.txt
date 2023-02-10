@@ -2,6 +2,13 @@ cmake_minimum_required(VERSION 3.23)
 
 project(OptiCraft)
 
+set(CMAKE_CXX_STANDARD 20)
+
+# MinGW not supported
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+	message(FATAL_ERROR "MinGW is not supported")
+endif()
+
 set(SOURCE_FILES
     "src/OptiCraft/main.cpp"
     "src/OptiCraft/Window.hpp"
@@ -19,6 +26,8 @@ find_package(SDL2 REQUIRED)
 find_package(Vulkan REQUIRED)
 
 include_directories(${SDL2_INCLUDE_DIRS} ${Vulkan_INCLUDE_DIRS})
+
+add_subdirectory(../AssetPackCompiler/Library libarc)
 
 add_executable(OptiCraft ${SOURCE_FILES})
 target_link_libraries(OptiCraft ${SDL2_LIBRARIES} ${Vulkan_LIBRARIES})
